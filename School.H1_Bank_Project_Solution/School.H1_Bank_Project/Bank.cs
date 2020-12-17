@@ -97,12 +97,12 @@ namespace School.H1_Bank_Project
         public string Deposit(double depositMoney, int accountId)
         {
             BankAccount account = this.accounts.Find(item => item.AccountId == accountId);
-            if (account != null)
+            if (account != null && depositMoney > 0)
             {
                 account.Balance += depositMoney;
                 return $"\nMoney deposited into Bank: {depositMoney:C}.";
             }
-            return $"Wrong account id: {accountId}!";            
+            return $"Wrong account id: {accountId} or invalid amount: {depositMoney}!";            
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace School.H1_Bank_Project
         public string Withdraw(double withdrawMoney, int accountId)
         {
             BankAccount account = this.accounts.Find(item => item.AccountId == accountId);
-            if (account != null)
+            if (account != null && withdrawMoney > 0)
             {
                 account.Balance -= withdrawMoney;
                 
@@ -124,7 +124,7 @@ namespace School.H1_Bank_Project
                 }
                 return $"\nMoney withdrawn from Bank: {withdrawMoney:C}.";
             }
-            return $"Wrong account id: {accountId}!";
+            return $"Wrong account id: {accountId} or invalid amount: {withdrawMoney}!";
         }
 
         /// <summary>
