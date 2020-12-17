@@ -4,19 +4,13 @@ using System.Text;
 
 namespace School.H1_Bank_Project
 {
-    public class BankAccount
+    public abstract class BankAccount
     {
         // Property
         public string AccountName { get; set; }
         public double Balance { get; set; }
-        public int AccountId { get; }
+        public int AccountId { get; protected set; }
 
-        // Constructor
-        public BankAccount(string name, int id)
-        {
-            AccountName = name;
-            AccountId = id;
-            Balance = 0;
-        }
+        public abstract void AccrueInterest();
     }
 }

@@ -55,12 +55,34 @@ namespace School.H1_Bank_Project
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public string CreateAccount(string name)
+        public string CreateAccount(string name, string accountType)
         {
-            BankAccount newAccount = new BankAccount(name, accountIdCount);
-            accounts.Add(newAccount);
-            accountIdCount++;
-            return $"Account created for: {name} with the id: {newAccount.AccountId}!";
+            BankAccount newAccount = null;
+            if (accountType == "savings")
+            {
+                newAccount = new SavingsAccount(name, accountIdCount);
+            }
+            else if (accountType == "overdraft")
+            {
+                newAccount = new OverdraftAccount(name, accountIdCount);
+            }
+            else if (accountType == "salery")
+            {
+                newAccount = new SaleryAccount(name, accountIdCount);
+            }
+
+            if (newAccount != null)
+            {
+                accounts.Add(newAccount);
+                accountIdCount++;
+                return $"Account created for: {name} with the id: {newAccount.AccountId}!";
+            }
+            return $"Wrong type of account!";
+        }
+
+        public void AccrueInterest()
+        {
+            accounts.ForEach(account => account.AccrueInterest());
         }
 
         public string Deposit(double depositMoney, int accountId)
@@ -79,7 +101,7 @@ namespace School.H1_Bank_Project
             BankAccount account = this.accounts.Find(item => item.AccountId == accountId);
             if (account != null)
             {
-                account.Balance += withdrawMoney;
+                account.Balance -= withdrawMoney;
                 return $"Money withdrawn from Bank: {withdrawMoney:C}.";
             }
             return $"Wrong account id: {accountId}!";

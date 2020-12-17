@@ -9,7 +9,7 @@ namespace School.H1_Bank_Project
 
         static void Main(string[] args)
         {
-            while (menuSelect != "6")
+            while (menuSelect != "9")
             {
                 Console.Clear();
                 Menu();
@@ -25,22 +25,42 @@ namespace School.H1_Bank_Project
             Console.WriteLine(ghostBank.PrintHeader());
             Console.WriteLine("Please select one of the following choices:");
             Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("1. Create Account.\n2. Deposit money.\n3. Withdraw money.\n4. Show balance.\n5. Show status.\n6. Exit.");
+            Console.WriteLine("1. Create Salery Account.\n2. Create Savings Account.\n3. Create Overdraft Account.\n4. Deposit money.\n5. Withdraw money.\n6. Accrue Interest.\n7. Show balance.\n8. Show status.\n9. Exit.");
             menuSelect = Console.ReadLine();
 
             int amount = 0;
             int accountId = 0;
+            string name = "";
             switch (menuSelect)
             {
                 case "1":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
                     Console.WriteLine("Enter your name here:");
-                    Console.WriteLine(ghostBank.CreateAccount(Console.ReadLine()));
+                    name = Console.ReadLine();
+                    Console.WriteLine(ghostBank.CreateAccount(name, "salery"));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
                 case "2":
+                    Console.Clear();
+                    Console.WriteLine(ghostBank.PrintHeader());
+                    Console.WriteLine("Enter the clients name:");
+                    name = Console.ReadLine();
+                    Console.WriteLine(ghostBank.CreateAccount(name, "savings"));
+                    Console.WriteLine("\nPress Enter to return to the menu.\n");
+                    Console.ReadLine();
+                    break;
+                case "3":
+                    Console.Clear();
+                    Console.WriteLine(ghostBank.PrintHeader());
+                    Console.WriteLine("Enter the clients name:");
+                    name = Console.ReadLine();
+                    Console.WriteLine(ghostBank.CreateAccount(name, "overdraft"));
+                    Console.WriteLine("\nPress Enter to return to the menu.\n");
+                    Console.ReadLine();
+                    break;
+                case "4":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
                     do
@@ -55,7 +75,7 @@ namespace School.H1_Bank_Project
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
-                case "3":
+                case "5":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
                     do
@@ -70,7 +90,13 @@ namespace School.H1_Bank_Project
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
-                case "4":
+                case "6":
+                    Console.WriteLine("Accruing interest.");
+                    ghostBank.AccrueInterest();
+                    Console.WriteLine("\nPress Enter to return to the menu.\n");
+                    Console.ReadLine();
+                    break;
+                case "7":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
                     do
@@ -81,14 +107,14 @@ namespace School.H1_Bank_Project
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
-                case "5":
+                case "8":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
                     Console.WriteLine(ghostBank.Status());
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
-                case "6":
+                case "9":
                     break;
             }
             return menuSelect;
