@@ -21,14 +21,23 @@ namespace School.H1_Bank_Project
         }
 
         /// <summary>
-        /// This is the Bank's header and total credits in the Bank.
+        /// This is the Bank's header.
+        /// </summary>
+        /// <returns></returns>
+        public string PrintHeader()
+        {
+            string header = $"----------------------------------------------------\n------------- Welcome to {bankName}! -------------\n";
+            string underline = $"----------------------------------------------------";
+            return header + underline;
+        }
+
+        /// <summary>
+        /// This is the Banks total credit.
         /// </summary>
         /// <returns></returns>
         public string Status()
         {
-            string header = $"-------------- Welcome to {bankName}! --------------\n";
-            string total = $"The banks total credit:                   {totalCredit:C}\n";
-            return header + total;
+            return $"The total credit in the bank is: {totalCredit:C}.";
         }
 
         /// <summary>
