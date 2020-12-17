@@ -13,6 +13,9 @@ namespace School.H1_Bank_Project
             AccountId = accountId;
         }
 
+        /// <summary>
+        /// Accruing Interest depending on the amount in our savings account.
+        /// </summary>
         public override void AccrueInterest()
         {
             if (Balance < 50000)

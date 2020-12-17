@@ -13,6 +13,9 @@ namespace School.H1_Bank_Project
             AccountId = accountId;
         }
 
+        /// <summary>
+        /// Accruing interest depending if it's a negative amount or positive amount.
+        /// </summary>
         public override void AccrueInterest()
         {
             if (Balance < 0)

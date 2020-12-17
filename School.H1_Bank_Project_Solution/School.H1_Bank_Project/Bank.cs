@@ -55,18 +55,18 @@ namespace School.H1_Bank_Project
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public string CreateAccount(string name, string accountType)
+        public string CreateAccount(string name, AccountType accountType)
         {
             BankAccount newAccount = null;
-            if (accountType == "savings")
+            if (accountType == AccountType.Savings)
             {
                 newAccount = new SavingsAccount(name, accountIdCount);
             }
-            else if (accountType == "overdraft")
+            else if (accountType == AccountType.Overdraft)
             {
                 newAccount = new OverdraftAccount(name, accountIdCount);
             }
-            else if (accountType == "salery")
+            else if (accountType == AccountType.Salery)
             {
                 newAccount = new SaleryAccount(name, accountIdCount);
             }
@@ -80,11 +80,20 @@ namespace School.H1_Bank_Project
             return $"Wrong type of account!";
         }
 
+        /// <summary>
+        /// For every account, Accrue Interest.
+        /// </summary>
         public void AccrueInterest()
         {
             accounts.ForEach(account => account.AccrueInterest());
         }
 
+        /// <summary>
+        /// This is where we deposit money into our Balance on the specified Account through the Account Id
+        /// </summary>
+        /// <param name="depositMoney"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
         public string Deposit(double depositMoney, int accountId)
         {
             BankAccount account = this.accounts.Find(item => item.AccountId == accountId);
@@ -96,6 +105,12 @@ namespace School.H1_Bank_Project
             return $"Wrong account id: {accountId}!";            
         }
 
+        /// <summary>
+        /// This is where we withdraw money from our Balance on the specified Account.
+        /// </summary>
+        /// <param name="withdrawMoney"></param>
+        /// <param name="accountId">Specific Account Id</param>
+        /// <returns></returns>
         public string Withdraw(double withdrawMoney, int accountId)
         {
             BankAccount account = this.accounts.Find(item => item.AccountId == accountId);
@@ -107,6 +122,11 @@ namespace School.H1_Bank_Project
             return $"Wrong account id: {accountId}!";
         }
 
+        /// <summary>
+        /// This is where we can see the Balance on a specific account, using the Account ID
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
         public string Balance(int accountId)
         {
             BankAccount account = this.accounts.Find(item => item.AccountId == accountId);

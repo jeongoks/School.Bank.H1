@@ -38,7 +38,7 @@ namespace School.H1_Bank_Project
                     Console.WriteLine(ghostBank.PrintHeader());
                     Console.WriteLine("Enter your name here:");
                     name = Console.ReadLine();
-                    Console.WriteLine(ghostBank.CreateAccount(name, "salery"));
+                    Console.WriteLine(ghostBank.CreateAccount(name, AccountType.Salery));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
@@ -47,7 +47,7 @@ namespace School.H1_Bank_Project
                     Console.WriteLine(ghostBank.PrintHeader());
                     Console.WriteLine("Enter the clients name:");
                     name = Console.ReadLine();
-                    Console.WriteLine(ghostBank.CreateAccount(name, "savings"));
+                    Console.WriteLine(ghostBank.CreateAccount(name, AccountType.Savings));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
@@ -56,7 +56,7 @@ namespace School.H1_Bank_Project
                     Console.WriteLine(ghostBank.PrintHeader());
                     Console.WriteLine("Enter the clients name:");
                     name = Console.ReadLine();
-                    Console.WriteLine(ghostBank.CreateAccount(name, "overdraft"));
+                    Console.WriteLine(ghostBank.CreateAccount(name, AccountType.Overdraft));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;

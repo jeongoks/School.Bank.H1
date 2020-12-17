@@ -4,6 +4,8 @@ using System.Text;
 
 namespace School.H1_Bank_Project
 {
+    public enum AccountType { Savings, Salery, Overdraft }
+
     public abstract class BankAccount
     {
         // Property

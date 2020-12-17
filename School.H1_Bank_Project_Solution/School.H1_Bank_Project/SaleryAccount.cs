@@ -13,6 +13,9 @@ namespace School.H1_Bank_Project
             AccountId = accountId;
         }
 
+        /// <summary>
+        /// Acrruing Interest of 0.5% to our Salery Account
+        /// </summary>
         public override void AccrueInterest()
         {
             Balance += Balance * .5 / 100;
