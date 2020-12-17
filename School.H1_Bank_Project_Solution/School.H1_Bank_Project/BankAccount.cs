@@ -6,18 +6,17 @@ namespace School.H1_Bank_Project
 {
     public class BankAccount
     {
-        // Fields
-        private string name;
-        private double balance;
-
         // Property
+        public string AccountName { get; set; }
         public double Balance { get; set; }
+        public int AccountId { get; }
 
         // Constructor
-        public BankAccount(string nam)
+        public BankAccount(string name, int id)
         {
-            name = nam;
-            balance = 0;
+            AccountName = name;
+            AccountId = id;
+            Balance = 0;
         }
     }
 }

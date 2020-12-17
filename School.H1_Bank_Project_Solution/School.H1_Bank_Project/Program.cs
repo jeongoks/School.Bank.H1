@@ -29,6 +29,7 @@ namespace School.H1_Bank_Project
             menuSelect = Console.ReadLine();
 
             int amount = 0;
+            int accountId = 0;
             switch (menuSelect)
             {
                 case "1":
@@ -44,9 +45,13 @@ namespace School.H1_Bank_Project
                     Console.WriteLine(ghostBank.PrintHeader());
                     do
                     {
+                        Console.WriteLine("Enter your Account ID here:");
+                    } while (! int.TryParse(Console.ReadLine(), out accountId));
+                    do
+                    {
                         Console.WriteLine("Enter the amount of money you want to deposit to you account:");
                     } while (! int.TryParse(Console.ReadLine(), out amount));
-                    Console.WriteLine(ghostBank.Deposit(amount));
+                    Console.WriteLine(ghostBank.Deposit(amount, accountId));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
@@ -55,16 +60,24 @@ namespace School.H1_Bank_Project
                     Console.WriteLine(ghostBank.PrintHeader());
                     do
                     {
+                        Console.WriteLine("Enter your Account ID here:");
+                    } while (!int.TryParse(Console.ReadLine(), out accountId));
+                    do
+                    {
                         Console.WriteLine("Enter the amount of money you want to withdraw from your account:");
                     } while (! int.TryParse(Console.ReadLine(), out amount));
-                    Console.WriteLine(ghostBank.Withdraw(amount));
+                    Console.WriteLine(ghostBank.Withdraw(amount, accountId));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;
                 case "4":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
-                    Console.WriteLine(ghostBank.Balance());
+                    do
+                    {
+                        Console.WriteLine("Enter your Account ID here:");
+                    } while (!int.TryParse(Console.ReadLine(), out accountId));
+                    Console.WriteLine(ghostBank.Balance(accountId));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;

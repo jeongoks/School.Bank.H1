@@ -9,6 +9,8 @@ namespace School.H1_Bank_Project
         //Fields
         private string bankName;
         private double totalCredit;
+        private List<BankAccount> accounts;
+        private int accountIdCount;
 
         // Property
         public double TotalCredit { get; }
@@ -18,6 +20,7 @@ namespace School.H1_Bank_Project
         {
             bankName = name;
             totalCredit = total;
+            accounts = new List<BankAccount>();
         }
 
         /// <summary>
@@ -37,7 +40,14 @@ namespace School.H1_Bank_Project
         /// <returns></returns>
         public string Status()
         {
-            return $"The total credit in the bank is: {totalCredit:C}.";
+            double total = totalCredit;
+            StringBuilder builder = new StringBuilder();
+            accounts.ForEach(account => {
+                total += account.Balance;
+                builder.Append($"Account {account.AccountId} balance: {account.Balance:C}\n");
+            } );
+            builder.Append($"The bank full credit is: {total:C}\n");
+            return builder.ToString();
         }
 
         /// <summary>
@@ -47,25 +57,42 @@ namespace School.H1_Bank_Project
         /// <returns></returns>
         public string CreateAccount(string name)
         {
-            BankAccount newAccount = new BankAccount(name);
-            return $"Account created for: {name}!";
+            BankAccount newAccount = new BankAccount(name, accountIdCount);
+            accounts.Add(newAccount);
+            accountIdCount++;
+            return $"Account created for: {name} with the id: {newAccount.AccountId}!";
         }
 
-        public string Deposit(double depositMoney)
+        public string Deposit(double depositMoney, int accountId)
         {
-            this.totalCredit += depositMoney;
-            return $"Money deposited into Bank: {depositMoney:C}.";
+            BankAccount account = this.accounts.Find(item => item.AccountId == accountId);
+            if (account != null)
+            {
+                account.Balance += depositMoney;
+                return $"Money deposited into Bank: {depositMoney:C}.";
+            }
+            return $"Wrong account id: {accountId}!";            
         }
 
-        public string Withdraw(double withdrawMoney)
+        public string Withdraw(double withdrawMoney, int accountId)
         {
-            this.totalCredit -= withdrawMoney;
-            return $"Money withdrawn from Bank: {withdrawMoney:C}.";
+            BankAccount account = this.accounts.Find(item => item.AccountId == accountId);
+            if (account != null)
+            {
+                account.Balance += withdrawMoney;
+                return $"Money withdrawn from Bank: {withdrawMoney:C}.";
+            }
+            return $"Wrong account id: {accountId}!";
         }
 
-        public string Balance()
+        public string Balance(int accountId)
         {
-            return $"Total credit in the bank: {totalCredit:C}.";
+            BankAccount account = this.accounts.Find(item => item.AccountId == accountId);
+            if (account != null)
+            {
+                return $"Money in the account: {account.Balance:C}.";
+            }
+            return $"Wrong account id: {accountId}!";
         }
     }
 }
