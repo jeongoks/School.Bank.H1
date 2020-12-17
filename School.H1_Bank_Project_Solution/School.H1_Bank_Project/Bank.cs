@@ -51,7 +51,7 @@ namespace School.H1_Bank_Project
         }
 
         /// <summary>
-        /// This is where we create new bank accounts.
+        /// This is where we create the new bank accounts, depending on choice for Account type.
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace School.H1_Bank_Project
             if (account != null)
             {
                 account.Balance += depositMoney;
-                return $"Money deposited into Bank: {depositMoney:C}.";
+                return $"\nMoney deposited into Bank: {depositMoney:C}.";
             }
             return $"Wrong account id: {accountId}!";            
         }
@@ -117,11 +117,12 @@ namespace School.H1_Bank_Project
             if (account != null)
             {
                 account.Balance -= withdrawMoney;
-                if ((account.Balance < 0))
+                
+                if ((account.Balance < 0))                                                      // If an Account goes in Negative because of a Withdraw, it'll throw an exception, telling the user this.
                 {
                     throw new OverdraftException(account.Balance.ToString());
                 }
-                return $"Money withdrawn from Bank: {withdrawMoney:C}.";
+                return $"\nMoney withdrawn from Bank: {withdrawMoney:C}.";
             }
             return $"Wrong account id: {accountId}!";
         }

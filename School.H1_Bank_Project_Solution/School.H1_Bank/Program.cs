@@ -23,10 +23,13 @@ namespace School.H1_Bank_Project
         /// <returns></returns>
         public static string Menu()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(ghostBank.PrintHeader());
-            Console.WriteLine("Please select one of the following choices:");
-            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("    Please select one of the following choices: ");
+            Console.WriteLine("----------------------------------------------------");
             Console.WriteLine("1. Create Salery Account.\n2. Create Savings Account.\n3. Create Overdraft Account.\n4. Deposit money.\n5. Withdraw money.\n6. Accrue Interest.\n7. Show balance.\n8. Show status.\n9. Exit.");
+            Console.WriteLine("----------------------------------------------------");
+            Console.Write("Enter your selection: ");
             menuSelect = Console.ReadLine();
 
             int amount = 0;
@@ -37,7 +40,7 @@ namespace School.H1_Bank_Project
                 case "1":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
-                    Console.WriteLine("Enter your name here:");
+                    Console.Write("Enter the client's name here: ");
                     name = Console.ReadLine();
                     Console.WriteLine(ghostBank.CreateAccount(name, AccountType.Salery));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
@@ -46,7 +49,7 @@ namespace School.H1_Bank_Project
                 case "2":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
-                    Console.WriteLine("Enter the clients name:");
+                    Console.Write("Enter the client's name: ");
                     name = Console.ReadLine();
                     Console.WriteLine(ghostBank.CreateAccount(name, AccountType.Savings));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
@@ -55,7 +58,7 @@ namespace School.H1_Bank_Project
                 case "3":
                     Console.Clear();
                     Console.WriteLine(ghostBank.PrintHeader());
-                    Console.WriteLine("Enter the clients name:");
+                    Console.Write("Enter the client's name: ");
                     name = Console.ReadLine();
                     Console.WriteLine(ghostBank.CreateAccount(name, AccountType.Overdraft));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
@@ -66,11 +69,11 @@ namespace School.H1_Bank_Project
                     Console.WriteLine(ghostBank.PrintHeader());
                     do
                     {
-                        Console.WriteLine("Enter your Account ID here:");
+                        Console.Write("Enter your Account ID here: ");
                     } while (! int.TryParse(Console.ReadLine(), out accountId));
                     do
                     {
-                        Console.WriteLine("Enter the amount of money you want to deposit to you account:");
+                        Console.Write("Enter the amount of money you want to deposit to your account: ");
                     } while (! int.TryParse(Console.ReadLine(), out amount));
                     Console.WriteLine(ghostBank.Deposit(amount, accountId));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
@@ -81,11 +84,11 @@ namespace School.H1_Bank_Project
                     Console.WriteLine(ghostBank.PrintHeader());
                     do
                     {
-                        Console.WriteLine("Enter your Account ID here:");
+                        Console.Write("Enter your Account ID here: ");
                     } while (!int.TryParse(Console.ReadLine(), out accountId));
                     do
                     {
-                        Console.WriteLine("Enter the amount of money you want to withdraw from your account:");
+                        Console.Write("Enter the amount of money you want to withdraw from your account: ");
                     } while (! int.TryParse(Console.ReadLine(), out amount));
                     try
                     {
@@ -99,6 +102,8 @@ namespace School.H1_Bank_Project
                     Console.ReadLine();
                     break;
                 case "6":
+                    Console.Clear();
+                    Console.WriteLine(ghostBank.PrintHeader());
                     Console.WriteLine("Accruing interest.");
                     ghostBank.AccrueInterest();
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
@@ -109,7 +114,7 @@ namespace School.H1_Bank_Project
                     Console.WriteLine(ghostBank.PrintHeader());
                     do
                     {
-                        Console.WriteLine("Enter your Account ID here:");
+                        Console.Write("Enter your Account ID here: ");
                     } while (!int.TryParse(Console.ReadLine(), out accountId));
                     Console.WriteLine(ghostBank.Balance(accountId));
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
