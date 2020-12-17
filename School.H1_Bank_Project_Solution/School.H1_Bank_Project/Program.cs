@@ -86,7 +86,14 @@ namespace School.H1_Bank_Project
                     {
                         Console.WriteLine("Enter the amount of money you want to withdraw from your account:");
                     } while (! int.TryParse(Console.ReadLine(), out amount));
-                    Console.WriteLine(ghostBank.Withdraw(amount, accountId));
+                    try
+                    {
+                        Console.WriteLine(ghostBank.Withdraw(amount, accountId));
+                    }
+                    catch (OverdraftException e)
+                    {
+                        Console.WriteLine($"Negative balance: {e.Message:C}");
+                    }
                     Console.WriteLine("\nPress Enter to return to the menu.\n");
                     Console.ReadLine();
                     break;

@@ -8,6 +8,8 @@ namespace School.H1_Bank_Project
 
     public abstract class BankAccount
     {
+        private double balance;
+
         // Property
         public string AccountName { get; set; }
         public double Balance { get; set; }

@@ -117,6 +117,10 @@ namespace School.H1_Bank_Project
             if (account != null)
             {
                 account.Balance -= withdrawMoney;
+                if ((account.Balance < 0))
+                {
+                    throw new OverdraftException(account.Balance.ToString());
+                }
                 return $"Money withdrawn from Bank: {withdrawMoney:C}.";
             }
             return $"Wrong account id: {accountId}!";
