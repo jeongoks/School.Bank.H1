@@ -75,7 +75,7 @@ namespace School.H1_Bank_Project
             {
                 accounts.Add(newAccount);
                 accountIdCount++;
-                return $"Account created for: {name} with the id: {newAccount.AccountId}!";
+                return $"{accountType} account created for: {name} with the id: {newAccount.AccountId}!";
             }
             return $"Wrong type of account!";
         }
